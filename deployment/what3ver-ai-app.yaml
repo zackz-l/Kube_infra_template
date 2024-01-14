@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: what3ver-ai
+  namespace: argocd
+spec:
+  destination:
+    namespace: what3ver-ai
+    server: https://kubernetes.default.svc
+  project: default 
+  source: 
+    path: deployment
+    repoURL: https://github.com/what3ver-ai/infrastructure.git
+    targetRevision: HEAD
+  syncPolicy: 
+    automated:
+      prune: true
+      selfHeal: false
+    syncOptions:
+    - CreateNamespace=true

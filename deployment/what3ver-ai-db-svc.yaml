@@ -1,0 +1,7 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: what3ver-ai-db-dev
+spec:
+  type: ExternalName
+  externalName: what3ver-ai-db-dev.c0jfs3tbf1kw.us-east-2.rds.amazonaws.com

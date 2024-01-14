@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: what3ver-ai
+  name: what3ver-ai
+  namespace: what3ver-ai
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: what3ver-ai
+  template:
+    metadata:
+      labels:
+        app: what3ver-ai
+    spec:
+      containers:
+      - name: what3ver-ai
+        env: 
+        - name: DATABASE_URL
+          value: "postgres://postgres:what3ver!@what3ver-ai-db-dev.c0jfs3tbf1kw.us-east-2.rds.amazonaws.com:5432/db"
+        image: 170478954536.dkr.ecr.us-east-2.amazonaws.com/what3ver-ai-backend-dev:latest
+        imagePullPolicy: Always
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8000
+        ports:
+        - containerPort: 8000

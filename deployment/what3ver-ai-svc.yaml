@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: what3ver-ai
+spec:
+  type: NodePort
+  ports:
+  - port: 8000
+    protocol: TCP
+    targetPort: 8000
+    NodePort: 31000
+  selector:
+    app: what3ver-ai
